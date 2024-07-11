@@ -1,0 +1,36 @@
+body {
+  background-color: #f8f9fa;
+}
+
+.app-container {
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.app-header {
+  color: #007bff;
+  text-align: center;
+  margin-bottom: 20px;
+  font-family: 'Arial', sans-serif;
+}
+
+.table {
+  background-color: #ffffff;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.table thead {
+  background-color: #007bff;
+  color: #ffffff;
+}
+
+.table tbody tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.table td, .table th {
+  padding: 10px;
+  text-align: center;
+}
