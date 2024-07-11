@@ -27,14 +27,6 @@ const TableFile = () => {
     return <Alert variant="danger">Error: {error}</Alert>;
   }
 
-  if (loading) {
-    return <Loading />;
-  }
-
-  if (!Array.isArray(files)) {
-    return null;
-  }
-
   return (
     <div>
       <FileFilter filter={filter} setFilter={setFilter} />
@@ -48,15 +40,29 @@ const TableFile = () => {
         </tr>
         </thead>
         <tbody>
-        {files.map((file) =>
-          file.lines.map((line, index) => (
-            <tr key={`${file.file}-${index}`}>
-              <td>{file.file}</td>
-              <td>{line.text}</td>
-              <td>{line.number}</td>
-              <td>{line.hex}</td>
-            </tr>
-          ))
+        {loading ? (
+          <tr>
+            <td colSpan="4">
+              <Loading />
+            </td>
+          </tr>
+        ) : files.length === 0 ? (
+          <tr>
+            <td colSpan="4">
+              <Alert variant="warning">No se encontraron resultados</Alert>
+            </td>
+          </tr>
+        ) : (
+          files.map((file) =>
+            file.lines.map((line, index) => (
+              <tr key={`${file.file}-${index}`}>
+                <td>{file.file}</td>
+                <td>{line.text}</td>
+                <td>{line.number}</td>
+                <td>{line.hex}</td>
+              </tr>
+            ))
+          )
         )}
         </tbody>
       </Table>
