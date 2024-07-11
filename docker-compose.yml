@@ -8,4 +8,9 @@ services:
       - API_KEY=Bearer aSuperSecretKey
       - API_URL=https://echo-serv.tbxnet.com/v1/secret/
       - PORT=9000
-
+  frontend:
+    build: ./frontend
+    ports:
+      - "3000:3000"
+    environment:
+      - REACT_APP_API_URL=http://localhost:9000

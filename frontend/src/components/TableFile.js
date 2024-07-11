@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Table, Alert } from 'react-bootstrap';
 import { debounce } from 'lodash';
@@ -11,19 +11,17 @@ const TableFile = () => {
   const { files, loading, error } = useSelector(state => state.files);
   const [filter, setFilter] = useState('');
 
-  const debouncedFetchFiles = useCallback(
-    debounce((filter) => {
-      dispatch(fetchFiles(filter));
-    }, 500),
-    []
-  );
-
   useEffect(() => {
+    const debouncedFetchFiles = debounce((filter) => {
+      dispatch(fetchFiles(filter));
+    }, 500);
+
     debouncedFetchFiles(filter);
+
     return () => {
       debouncedFetchFiles.cancel();
     };
-  }, [filter, debouncedFetchFiles]);
+  }, [filter, dispatch]);
 
   if (error) {
     return <Alert variant="danger">Error: {error}</Alert>;
