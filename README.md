@@ -1,7 +1,6 @@
 ## Challenge ToolBox
 
 
-```markdown
 # Full Stack Challenge
 
 Este proyecto es una aplicación full stack que consta de un backend desarrollado con Node.js y Express, y un frontend desarrollado con React y Redux. La aplicación consume datos de una API externa, los formatea y los muestra en una tabla.
